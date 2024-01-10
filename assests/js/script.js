@@ -24,26 +24,37 @@ function getApi(event) {
     })
     .then(function (data) {
       //Loop over the data to generate a weather forcast for 5 days
-         let windSpeed =[];
-         let temperature =[];
-         let humid = [];
-         let weatherIcon=[];
-         let date =[];
-      for(let i = 0; i<data.length; i++){
+        let windSpeed =[];
+        let temperature =[];
+        let humid = [];
+        let weatherIcon=[];
+        let date =[];
+
+      for(let i = 0; i<6; i++){
         // console.log(data);
-        windSpeed[i] =data.list['0'].wind.speed;
-        temperature [i]= data.list['0'].main.temp;
-        humid[i] = data.list['0'].main.humidity;
-        weatherIcon[i] = data.list['0'].weather['0'].icon;
-        date[i] = moment.unix(data.list['0'].dt).format("M/DD/YYYY");
+        windSpeed[i] =data.list[i].wind.speed;
+        temperature[i]= data.list[i].main.temp;
+        humid[i] = data.list[i].main.humidity;
+        weatherIcon[i] = data.list[i].weather['0'].icon;
+        date[i] = moment.unix(data.list[i].dt).format("M/DD/YYYY");
+        console.log(data.list[i].main.temp);
+
+        // document.getElementById(`dateDay${i}`).textContent = date[i];
+        // document.getElementById(`icon1${i}`).textContent = weatherIcon[i];
+        // document.getElementById(`temp1${i}`).textContent = temperature[i];
+        // document.getElementById(`wind1${i}`).textContent = windSpeed[i];
+        // document.getElementById(`humid1${i}`).textContent = humid[i];
+
       }
+
+      
 
       for(let i=0; i<6; i++){        
         document.getElementById(`dateDay${i}`).textContent = date[i];
-        document.getElementById(`icon1${i}`).textContent = weatherIcon[i];
-        document.getElementById(`temp1${i}`).textContent = temperature[i];
-        document.getElementById(`wind1${i}`).textContent = windSpeed[i];
-        document.getElementById(`humid1${i}`).textContent = humid[i];
+        // document.getElementById(`icon1${i}`).textContent = weatherIcon[i];
+        // document.getElementById(`temp1${i}`).textContent = temperature[i];
+        // document.getElementById(`wind1${i}`).textContent = windSpeed[i];
+        // document.getElementById(`humid1${i}`).textContent = humid[i];
       }
 
 
