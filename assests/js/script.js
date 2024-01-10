@@ -1,6 +1,4 @@
-
-
-// var city =document.getElementById('city').value;
+// Gets the button id
 let fetchButton = document.getElementById('fetch-button');
 
 function getApi(event) {
@@ -8,13 +6,9 @@ function getApi(event) {
   let city =document.getElementById('city').value;
   console.log(city);
   let api_key ="b999cb8b22b053825ee574c293c2deaa"
-  // fetch request gets a list of all the repos for the node.js organization
-  // let requestUrl = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&&appid=b999cb8b22b053825ee574c293c2deaa';
+  // fetch request gets a list of all the weather data for six days
   let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=6&appid=b999cb8b22b053825ee574c293c2deaa`;
   
-  //https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=6&appid=b999cb8b22b053825ee574c293c2deaa
-
-
 //replace space with +sign.
 
   fetch(requestUrl)
@@ -23,15 +17,15 @@ function getApi(event) {
       return response.json();
     })
     .then(function (data) {
-      //Loop over the data to generate a weather forcast for 5 days
+// declared an empty array for the following variables to store the data and post it in the html.
         let windSpeed =[];
         let temperature =[];
         let humid = [];
         let weatherIcon=[];
         let date =[];
-
+        let weatherIconimg= {};
+      //Loop over the data to generate a weather forcast for 5 days
       for(let i = 0; i<6; i++){
-        // console.log(data);
         windSpeed[i] =data.list[i].wind.speed;
         temperature[i]= data.list[i].main.temp;
         humid[i] = data.list[i].main.humidity;
@@ -39,26 +33,12 @@ function getApi(event) {
         date[i] = moment.unix(data.list[i].dt).format("M/DD/YYYY");
         console.log(data.list[i].main.temp);
 
-        // document.getElementById(`dateDay${i}`).textContent = date[i];
-        // document.getElementById(`icon1${i}`).textContent = weatherIcon[i];
-        // document.getElementById(`temp1${i}`).textContent = temperature[i];
-        // document.getElementById(`wind1${i}`).textContent = windSpeed[i];
-        // document.getElementById(`humid1${i}`).textContent = humid[i];
-
-      }
-
-      
-
-      for(let i=0; i<6; i++){        
         document.getElementById(`dateDay${i}`).textContent = date[i];
-        // document.getElementById(`icon1${i}`).textContent = weatherIcon[i];
-        // document.getElementById(`temp1${i}`).textContent = temperature[i];
-        // document.getElementById(`wind1${i}`).textContent = windSpeed[i];
-        // document.getElementById(`humid1${i}`).textContent = humid[i];
+        document.getElementById(`icon${i}`).textContent = weatherIcon[i];
+        document.getElementById(`temp${i}`).textContent = temperature[i];
+        document.getElementById(`wind${i}`).textContent = windSpeed[i];
+        document.getElementById(`humid${i}`).textContent = humid[i];
       }
-
-
-   
     });
 }
 
