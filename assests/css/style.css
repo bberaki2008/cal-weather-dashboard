@@ -10,11 +10,13 @@ header {
 background: navy; /* For browsers that do not support gradients */
 background-image: linear-gradient(to right, #4f74e3, #330066);
 }
-
+/* 
+custom background color */
 .card {
     border-radius: 0px !important;
     moz-border-radius: 0px !important;
     webkit-border-radius: 0px !important;
-    
-
+    --bs-card-bg: rgba(4, 4, 108, 0.6);
+    color: white;
 }
+
