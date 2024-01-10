@@ -20,3 +20,6 @@ custom background color */
     color: white;
 }
 
+.custom-btn-color{
+    -bs-btn-color:black;
+}
