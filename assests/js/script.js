@@ -10,9 +10,9 @@ function getApi(event) {
   let api_key ="b999cb8b22b053825ee574c293c2deaa"
   // fetch request gets a list of all the repos for the node.js organization
   // let requestUrl = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&&appid=b999cb8b22b053825ee574c293c2deaa';
-  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=1&appid=b999cb8b22b053825ee574c293c2deaa`;
+  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=6&appid=b999cb8b22b053825ee574c293c2deaa`;
   
-  //https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=1&appid=b999cb8b22b053825ee574c293c2deaa
+  //https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=6&appid=b999cb8b22b053825ee574c293c2deaa
 
 
 //replace space with +sign.
@@ -24,25 +24,30 @@ function getApi(event) {
     })
     .then(function (data) {
       //Loop over the data to generate a weather forcast for 5 days
-      // for(let i = 0; i<data.length; i++){
-        console.log(data);
-        let windSpeed =data.list['0'].wind.speed;
-        let temperature= data.list['0'].main.temp;
-        let humid = data.list['0'].main.humidity;
-        let weatherIcon = data.list['0'].weather['0'].icon;
-        let date = moment.unix(data.list['0'].dt).format("M/DD/YYYY");
-        document.getElementById('dateDay1').textContent = date;
-        document.getElementById('icon1').textContent = weatherIcon;
-        document.getElementById('temp1').textContent = temperature;
-        document.getElementById('wind1').textContent = windSpeed;
-        document.getElementById('humid1').textContent = humid;
+         let windSpeed =[];
+         let temperature =[];
+         let humid = [];
+         let weatherIcon=[];
+         let date =[];
+      for(let i = 0; i<data.length; i++){
+        // console.log(data);
+        windSpeed[i] =data.list['0'].wind.speed;
+        temperature [i]= data.list['0'].main.temp;
+        humid[i] = data.list['0'].main.humidity;
+        weatherIcon[i] = data.list['0'].weather['0'].icon;
+        date[i] = moment.unix(data.list['0'].dt).format("M/DD/YYYY");
+      }
+
+      for(let i=0; i<6; i++){        
+        document.getElementById(`dateDay${i}`).textContent = date[i];
+        document.getElementById(`icon1${i}`).textContent = weatherIcon[i];
+        document.getElementById(`temp1${i}`).textContent = temperature[i];
+        document.getElementById(`wind1${i}`).textContent = windSpeed[i];
+        document.getElementById(`humid1${i}`).textContent = humid[i];
+      }
 
 
-
-      //Loop over the data to generate a weather forcast for 5 days
    
- 
-  
     });
 }
 
