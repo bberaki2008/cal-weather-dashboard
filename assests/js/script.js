@@ -10,7 +10,7 @@ function getApi(event) {
   let api_key ="b999cb8b22b053825ee574c293c2deaa"
   // fetch request gets a list of all the repos for the node.js organization
   // let requestUrl = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&&appid=b999cb8b22b053825ee574c293c2deaa';
-  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=metric&cnt=1&appid=b999cb8b22b053825ee574c293c2deaa`;
+  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=1&appid=b999cb8b22b053825ee574c293c2deaa`;
   
   //https://api.openweathermap.org/data/2.5/forecast?q=seattle&units=imperial&cnt=1&appid=b999cb8b22b053825ee574c293c2deaa
 
