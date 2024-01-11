@@ -7,7 +7,6 @@ function getApi(event) {
 
   let curr_city = document.getElementById('curr_city');
     curr_city.textContent = city;
-
   //replace space with +sign.
   let cityFiltered = city.replace(" ","+");
   // let api_key ="b999cb8b22b053825ee574c293c2deaa"
@@ -18,6 +17,9 @@ function getApi(event) {
   fetch(requestUrl)
     .then(function (response) {
   // console.log(response);
+      if (response.status !== 200) {
+        curr_city.textContent = response.status;
+      }
       return response.json();
     })
     .then(function (data) {
