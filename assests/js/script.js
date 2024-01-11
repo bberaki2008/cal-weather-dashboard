@@ -1,5 +1,6 @@
 // Gets the button by id
 let fetchButton = document.getElementById('fetch-button');
+let notFound = document.getElementById('not_found');
 
 function getApi(event) {
   event.preventDefault();
@@ -16,9 +17,9 @@ function getApi(event) {
   // fetching data from openweather using the above link
   fetch(requestUrl)
     .then(function (response) {
-  // console.log(response);
+  // gives error message if result is not found due to many reasons
       if (response.status !== 200) {
-        curr_city.textContent = response.status;
+        notFound.textContent ="Not Found! Or Enter a valued city name!";
       }
       return response.json();
     })
