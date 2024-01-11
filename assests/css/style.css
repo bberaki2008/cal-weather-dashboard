@@ -19,3 +19,12 @@ custom background color */
     --bs-card-bg: rgba(4, 4, 108, 0.6);
     color: white;
 }
+
+#curr_city {
+    text-transform: capitalize;
+}
+
+img{
+    width: 40px;
+    height: 40px;
+}
