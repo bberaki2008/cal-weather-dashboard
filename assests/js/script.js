@@ -28,7 +28,7 @@ function getApi(event) {
         let weatherIcon=[];
         let date =[];
         let weatherIconimg= {"13n":"./assests/img/13n.png", "04n":"./assests/img/04n.png", "01n":"./assests/img/01n.png","03n":"./assests/img/03n.png",
-      "10n":"./assests/img/10n.png","02n":"./assests/img/02n.png"};
+      "10n":"./assests/img/10n.png","02n":"./assests/img/02n.png", "13d":"./assests/img/13n.png", "04d":"./assests/img/04n.png", "01d":"./assests/img/01n.png","03d":"./assests/img/03n.png", "10d":"./assests/img/10n.png","02d":"./assests/img/02n.png"};
       //Loop over the data to generate a weather forcast for 5 days, since the weather is collected every
       // three hours so the for loop is incremented by to to change the data to dailly
 
