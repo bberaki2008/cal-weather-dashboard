@@ -19,6 +19,7 @@ function getApi(event) {
     .then(function (response) {
   // gives error message if result is not found due to many reasons
       if (response.status !== 200) {
+        location.reload();
         notFound.textContent ="Not Found! Or Enter a valued city name!";
       }
       return response.json();
