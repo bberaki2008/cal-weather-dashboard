@@ -20,7 +20,7 @@ custom background color */
     color: white;
 }
 
-#curr_city {
+#curr_city, button {
     text-transform: capitalize;
 }
 
