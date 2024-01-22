@@ -1,6 +1,15 @@
 // Gets the button by id
 let fetchButton = document.getElementById('fetch-button');
 let notFound = document.getElementById('not_found');
+let divGrandParentEl = document.getElementById('grandParent');
+
+  let daysWeatherOutlookArray= localStorage.getItem("daysWeatherOutlookArray")?JSON.parse(localStorage.getItem("daysWeatherOutlookArray")): [];
+
+console.log("x");
+  for(let i=0; i < daysWeatherOutlookArray.length; i++){
+    histCreator(`${daysWeatherOutlookArray[i].name}`);
+  }
+
 
 function getApi(event) {
   event.preventDefault();
@@ -11,14 +20,11 @@ function getApi(event) {
     curr_city.textContent = city;
   //replace space with +sign.
   let cityFiltered = city.replace(" ","+");
-  let daysWeatherOutlookArray= localStorage.getItem("daysWeatherOutlookArray")?JSON.parse(localStorage.getItem("daysWeatherOutlookArray")): [];
+
   // let api_key ="b999cb8b22b053825ee574c293c2deaa"
   // fetch request gets a list of all the weather data for six days
   let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityFiltered}&units=imperial&cnt=48&appid=b999cb8b22b053825ee574c293c2deaa`; //
-git 
-  // setDate call to set the dates
-  // setDate();
-  // fetching data from openweather using the above link
+
   fetch(requestUrl)
     .then(function (response) {
     // gives error message if result is not found due to many reasons
@@ -39,7 +45,7 @@ git
     "10n":"./assests/img/10n.png","02n":"./assests/img/02n.png", "13d":"./assests/img/13n.png", "04d":"./assests/img/04n.png", "01d":"./assests/img/01n.png","03d":"./assests/img/03n.png", "10d":"./assests/img/10n.png","02d":"./assests/img/02n.png"};
       //Loop over the data to generate a weather forcast for 5 days, since the weather is collected every
       // three hours so the for loop is incremented by to to change the data to dailly
-
+      city = city.toLowerCase();
       for(let i = 0; i<40; i+=8){
         windSpeed[i] =data.list[i].wind.speed;
         temperature[i]= data.list[i].main.temp;
@@ -62,8 +68,13 @@ git
       let humidFiltered = humid.filter(filterUndefine);
       let weatherIconFiltered =weatherIcon.filter(filterUndefine);
       let dateFiltered = date.filter(filterUndefine);
-      let daysWeatherOutlook ={"name":city,date:[], weatherIcon:[], temp:[], winSpeed:[], humid:[]};
       
+
+      let daysWeatherOutlook ={"name":city,date:[], weatherIcon:[], temp:[], winSpeed:[], humid:[]};
+
+      // filtering out if the city is already in the list
+      daysWeatherOutlookArray = daysWeatherOutlookArray.filter( el => el.name != city ); 
+
       for(let i = 0; i < 6 ; i++) {
         document.getElementById(`dateDay${i}`).textContent = dateFiltered[i];
         daysWeatherOutlook.date.push(dateFiltered[i]);
@@ -80,24 +91,6 @@ git
         document.getElementById(`humid${i}`).textContent = humidFiltered[i];
         daysWeatherOutlook.humid.push(humidFiltered[i]);
       }
-      //   localStorage.setItem(daysWeatherOutlook, JSON.stringify({
-      //   city:city,
-      //   date:daysWeatherOutlook['date'],
-      //   weatherIcon:daysWeatherOutlook['weatherIcon'],
-      //   temp:daysWeatherOutlook['temp'],
-      //   winSpeed:daysWeatherOutlook['winSpeed'],
-      //   humid:daysWeatherOutlook['humid']
-      // }));
-
-      // daysWeatherOutlook = {
-      //   city:city,
-      //   date:daysWeatherOutlook['date'],
-      //   weatherIcon:daysWeatherOutlook['weatherIcon'],
-      //   temp:daysWeatherOutlook['temp'],
-      //   winSpeed:daysWeatherOutlook['winSpeed'],
-      //   humid:daysWeatherOutlook['humid']
-      // }
-
 
       daysWeatherOutlookArray.push(daysWeatherOutlook);
       localStorage.setItem("daysWeatherOutlookArray", JSON.stringify(daysWeatherOutlookArray));
@@ -107,11 +100,30 @@ git
 // added even listner to search button
 fetchButton.addEventListener('click', getApi);
 
+//creates history searched city with buttons to click
+function histCreator (city){
+  let parentDiv = document.createElement("div");
+  let childDiv = document.createElement("div");
+  let histButton = document.createElement("button");
+  parentDiv.setAttribute("class","row");
+  childDiv.setAttribute("class","row mt-3");
+  histButton.setAttribute("class","btn btn-secondary mb-1");
+  histButton.setAttribute("type","submit");
+  histButton.setAttribute("value",`${city}`);
+  // Adds text content to created button
+  histButton.textContent =`${city}`;
+
+  childDiv.appendChild(histButton);
+  parentDiv.appendChild(childDiv);
+  // Appends prant "div" as child of grand "div"
+  divGrandParentEl.appendChild(parentDiv);
+ 
 
 
+  
 
-
-
+}
+//JSON.parse(localStorage.getItemItem("daysWeatherOutlookArray")).length
 
 // const setDate = ()=>{
 //   for(let i=0; i<6; i++)
