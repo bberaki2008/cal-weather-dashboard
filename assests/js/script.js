@@ -5,7 +5,6 @@ let divGrandParentEl = document.getElementById('grandParent');
 
   let daysWeatherOutlookArray= localStorage.getItem("daysWeatherOutlookArray")?JSON.parse(localStorage.getItem("daysWeatherOutlookArray")): [];
 
-console.log("x");
   for(let i=0; i < daysWeatherOutlookArray.length; i++){
     histCreator(`${daysWeatherOutlookArray[i].name}`);
   }
@@ -76,8 +75,8 @@ function getApi(event) {
       daysWeatherOutlookArray = daysWeatherOutlookArray.filter( el => el.name != city ); 
 
       for(let i = 0; i < 6 ; i++) {
-        document.getElementById(`dateDay${i}`).textContent = dateFiltered[i];
-        daysWeatherOutlook.date.push(dateFiltered[i]);
+        document.getElementById(`dateDay${i}`).textContent = moment().add(i, 'd').format("M/D/YYYY");
+        daysWeatherOutlook.date.push(moment().add(i, 'd').format("M/D/YYYY"));
 
         document.getElementById(`icon${i}`).setAttribute("src", weatherIconimg[weatherIconFiltered[i]]);
         daysWeatherOutlook.weatherIcon.push(weatherIconimg[weatherIconFiltered[i]]);
@@ -117,15 +116,5 @@ function histCreator (city){
   parentDiv.appendChild(childDiv);
   // Appends prant "div" as child of grand "div"
   divGrandParentEl.appendChild(parentDiv);
- 
-
-
-  
 
 }
-//JSON.parse(localStorage.getItemItem("daysWeatherOutlookArray")).length
-
-// const setDate = ()=>{
-//   for(let i=0; i<6; i++)
-//     document.getElementById(`dateDay${i}`).textContent = moment().format('M/D/YYYY');
-// }
