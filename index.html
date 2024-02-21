@@ -19,8 +19,8 @@
     </header>
     
 <main class="mt-3 container-fluid"> 
-    <div class="row custom-margin-left">
-        <div class="col-3 " id="grandParent">
+    <div class="row custom-margin-left weather">
+        <div class="col-3 weahter-input" id="grandParent">
             <form class="row">
                 <div class="row">
                     <label for="city" ><p class="text-start font-weight-bold fs-4 fw-bold">Search for a City</p></label>
@@ -32,79 +32,77 @@
                 </div>
             </form>
         </div>
-        <div class="col-8 text-start justify-content-end">
-            <div class="row" >
+        <div class="col-8 text-start justify-content-end" id="parent">
+            <div class="row justify-content-between" >
                 <div class="col-12">
                     <div class="border p-2">
-                        <p class="text-start font-weight-bold fs-4 fw-bold" id="not_found"><span id="curr_city"></span> (<span id="dateDay0">01/09/2024</span>)
-                            <img id="icon0" src="./assests/img/02n.png" alt="weather icon">
+                        <p class="text-start font-weight-bold fs-4 fw-bold" id="not_found"><span id="curr_city"></span> (<span id="dateDay0">__/__/__</span>)
+                            <img id="icon0" src="" alt="weather icon">
                         </p>
-                        <p>Temp: <span id="temp0">00</span> &#176;F</p>
-                        <p>Wind: <span id="wind0">00</span> MPH</p>
-                        <p>Humidity: <span id="humid0">00</span> %</p>
+                        <p>Temp: <span id="temp0">__</span> &#176;F</p>
+                        <p>Wind: <span id="wind0">__</span> MPH</p>
+                        <p>Humidity: <span id="humid0">__</span> %</p>
                     </div>
                 </div>
+                <div class="col-12">
                     <p class="mt-1 font-weight-bold fs-4 fw-bold">5-Day Forecast:</p>
-                    <div class="row justify-content-between">
-                        <div class="col-2">
-                            <div class="card mb-3 " > <!-- style="width: 18%;margin-right: 20px; margin-bottom: 20px; -->
-                                <div class="card-body custom-card-bg">
-                                    <h5 class="card-title" id="dateDay1">01/09/2024</h5>
-                                    <p><img id="icon1" src="./assests/img/02n.png" alt="weather icon"></p>
-                                    <p>Temp: <span id="temp1">00</span> &#176;F</p>
-                                    <p>Wind: <span id="wind1">00</span> MPH</p>
-                                    <p>Humidity: <span id="humid1">00</span> %</p>
-                                </div>
-                            </div>
+                </div>
+                <div class="col-2">
+                    <div class="card mb-3"> 
+                        <div class="card-body custom-card-bg">
+                            <h5 class="card-title" id="dateDay1">__/__/____</h5>
+                            <p><img id="icon1" src="./assests/img/02n.png" alt="weather icon"></p>
+                            <p>Temp: <span id="temp1">__</span> &#176;F</p>
+                            <p>Wind: <span id="wind1">__</span> MPH</p>
+                            <p>Humidity: <span id="humid1">__</span> %</p>
                         </div>
-                        <div class="col-2">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title" id="dateDay2">01/09/2024</h5>
-                                    <p><img id="icon2" src="./assests/img/02n.png" alt="weather icon"></p>
-                                    <p>Temp: <span id="temp2">00</span> &#176;F</p>
-                                    <p>Wind: <span id="wind2">00</span> MPH</p>
-                                    <p>Humidity: <span id="humid2">00</span> %</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title" id="dateDay3">01/09/2024</h5>
-                                    <p><img id="icon3" src="./assests/img/02n.png" alt="weather icon"></p>
-                                    <p>Temp: <span id="temp3">00</span> &#176;F</p>
-                                    <p>Wind: <span id="wind3">00</span> MPH</p>
-                                    <p>Humidity: <span id="humid3">00</span> %</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title" id="dateDay4">01/09/2024</h5>
-                                    <p><img id="icon4" src="./assests/img/02n.png" alt="weather icon"></p>
-                                    <p>Temp: <span id="temp4">00</span> &#176;F</p>
-                                    <p>Wind: <span id="wind4">00</span> MPH</p>
-                                    <p>Humidity: <span id="humid4">00</span> %</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-2">
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <h5 class="card-title" id="dateDay5">01/09/2024</h5>
-                                    <p><img id="icon5" src="./assests/img/02n.png" alt="weather icon"></p>
-                                    <p>Temp: <span id="temp5">00</span> &#176;F</p>
-                                    <p>Wind: <span id="wind5">00</span> MPH</p>
-                                    <p>Humidity: <span id="humid5">00</span> %</p>
-                                </div>
-                            </div>
-                        </div>                    
                     </div>
                 </div>
+                <div class="col-2">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title" id="dateDay2">__/__/____</h5>
+                            <p><img id="icon2" src="./assests/img/02n.png" alt="weather icon"></p>
+                            <p>Temp: <span id="temp2">__</span> &#176;F</p>
+                            <p>Wind: <span id="wind2">__</span> MPH</p>
+                            <p>Humidity: <span id="humid2">__</span> %</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title" id="dateDay3">__/__/____</h5>
+                            <p><img id="icon3" src="./assests/img/02n.png" alt="weather icon"></p>
+                            <p>Temp: <span id="temp3">__</span> &#176;F</p>
+                            <p>Wind: <span id="wind3">__</span> MPH</p>
+                            <p>Humidity: <span id="humid3">__</span> %</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title" id="dateDay4">__/__/____</h5>
+                            <p><img id="icon4" src="./assests/img/02n.png" alt="weather icon"></p>
+                            <p>Temp: <span id="temp4">__</span> &#176;F</p>
+                            <p>Wind: <span id="wind4">__</span> MPH</p>
+                            <p>Humidity: <span id="humid4">__</span> %</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title" id="dateDay5">__/__/____</h5>
+                            <p><img id="icon5" src="./assests/img/02n.png" alt="weather icon"></p>
+                            <p>Temp: <span id="temp5">__</span> &#176;F</p>
+                            <p>Wind: <span id="wind5">__</span> MPH</p>
+                            <p>Humidity: <span id="humid5">__</span> %</p>
+                        </div>
+                    </div>
+                </div> 
             </div>
-
         </div>
     </div>
 </main>

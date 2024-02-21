@@ -14,6 +14,7 @@ function getApi(event) {
   event.preventDefault();
   let city =document.getElementById('city').value.trim();
       //city = city.toLowerCase();
+    if(!city) return;
 
   let curr_city = document.getElementById('curr_city');
     curr_city.textContent = city;
@@ -40,8 +41,12 @@ function getApi(event) {
       let humid = [];
       let weatherIcon=[];
       let date =[];
-      let weatherIconimg= {"13n":"./assests/img/13n.png", "04n":"./assests/img/04n.png", "01n":"./assests/img/01n.png","03n":"./assests/img/03n.png",
-    "10n":"./assests/img/10n.png","02n":"./assests/img/02n.png", "13d":"./assests/img/13n.png", "04d":"./assests/img/04n.png", "01d":"./assests/img/01n.png","03d":"./assests/img/03n.png", "10d":"./assests/img/10n.png","02d":"./assests/img/02n.png"};
+      let weatherIconimg= {
+        "13n":"https://openweathermap.org/img/wn/13n@2x.png", "04n":"https://openweathermap.org/img/wn/04n@2x.png", "01n":"https://openweathermap.org/img/wn/01n@2x.png","03n":"https://openweathermap.org/img/wn/03n@2x.png",
+        "10n":"https://openweathermap.org/img/wn/10n@2x.png","02n":"https://openweathermap.org/img/wn/02n@2x.png", "13d":"https://openweathermap.org/img/wn/13d@2x.png", "04d":"https://openweathermap.org/img/wn/04d@2x.png", 
+        "01d":"https://openweathermap.org/img/wn/01d@2x.png",
+        "03d":"https://openweathermap.org/img/wn/03d@2x.png", 
+        "10d":"https://openweathermap.org/img/wn/10d@2x.png"};
       //Loop over the data to generate a weather forcast for 5 days, since the weather is collected every
       // three hours so the for loop is incremented by to to change the data to dailly
       city = city.toLowerCase();
@@ -94,7 +99,9 @@ function getApi(event) {
       daysWeatherOutlookArray.push(daysWeatherOutlook);
       localStorage.setItem("daysWeatherOutlookArray", JSON.stringify(daysWeatherOutlookArray));
 
-  })
+  }).catch(() => {
+    alert("An error occurred while fetching the weather forecast!");
+  });
 }
 // added even listner to search button
 fetchButton.addEventListener('click', getApi);
@@ -106,7 +113,7 @@ function histCreator (city){
   let histButton = document.createElement("button");
   parentDiv.setAttribute("class","row");
   childDiv.setAttribute("class","row mt-3");
-  histButton.setAttribute("class","btn btn-secondary mb-1");
+  histButton.setAttribute("class","btn btn-secondary mb-1 hisCity");
   histButton.setAttribute("type","submit");
   histButton.setAttribute("value",`${city}`);
   // Adds text content to created button
@@ -118,3 +125,37 @@ function histCreator (city){
   divGrandParentEl.appendChild(parentDiv);
 
 }
+
+//generate weather forecast from local history
+$(".hisCity" ).on( "click", function(event) {
+  const city = event.target.getAttribute('value');
+  curr_city.textContent = city;
+  let daysWeatherOutlookArrayLoc = localStorage.getItem("daysWeatherOutlookArray")?JSON.parse(localStorage.getItem("daysWeatherOutlookArray")):[];
+  let cityWeatherOutlook;
+    let windSpeed =[];
+    let temperature =[];
+    let humid = [];
+    let weatherIcon=[];
+    let date =[];
+    let weatherIconimg= {
+      "13n":"https://openweathermap.org/img/wn/13n@2x.png", "04n":"https://openweathermap.org/img/wn/04n@2x.png", "01n":"https://openweathermap.org/img/wn/01n@2x.png","03n":"https://openweathermap.org/img/wn/03n@2x.png",
+      "10n":"https://openweathermap.org/img/wn/10n@2x.png","02n":"https://openweathermap.org/img/wn/02n@2x.png", "13d":"https://openweathermap.org/img/wn/13d@2x.png", "04d":"https://openweathermap.org/img/wn/04d@2x.png", 
+      "01d":"https://openweathermap.org/img/wn/01d@2x.png",
+      "03d":"https://openweathermap.org/img/wn/03d@2x.png", 
+      "10d":"https://openweathermap.org/img/wn/10d@2x.png"};
+  for(let i=0; i < daysWeatherOutlookArrayLoc.length; i++){
+    if(daysWeatherOutlookArrayLoc[i].name ===city){
+      cityWeatherOutlook = daysWeatherOutlookArrayLoc[i];
+    }
+  }
+
+
+  for(let i = 0; i < 6 ; i++) {
+    document.getElementById(`dateDay${i}`).textContent =  cityWeatherOutlook.date[i];
+    document.getElementById(`icon${i}`).setAttribute("src", cityWeatherOutlook.weatherIcon[i]);
+    document.getElementById(`temp${i}`).textContent = cityWeatherOutlook.temp[i];
+    document.getElementById(`wind${i}`).textContent = cityWeatherOutlook.winSpeed[i];
+    document.getElementById(`humid${i}`).textContent = cityWeatherOutlook.humid[i];
+  }
+
+});
