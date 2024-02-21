@@ -13,11 +13,25 @@ background-image: linear-gradient(to right, #4f74e3, #330066);
 /* 
 custom background color */
 .card {
-    border-radius: 0px !important;
+    /* border-radius: 0px !important;
     moz-border-radius: 0px !important;
-    webkit-border-radius: 0px !important;
+    webkit-border-radius: 0px !important; */
     --bs-card-bg: rgba(4, 4, 108, 0.6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     color: white;
+    /* gap:3rem 2rem;
+    width: calc((100% - 8rem)/5); */
+    width: 10rem
+    /* min-width: calc((100%)/5); */
+    /* padding: 5px;
+    box-sizing: border-box;
+
+    min-width: 160px;
+    min-height: 250px;
+    gap:5px; */
 }
 
 #curr_city, button {
@@ -27,4 +41,38 @@ custom background color */
 img{
     width: 40px;
     height: 40px;
+}
+
+/* .card {
+    border-radius: 8px;
+    border: 1px solid #cccccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box;
+    width: 200px;
+    height: 200px;
+    transition: all linear 200ms;
+} */
+#grandParent, #parent, #child{
+    min-width:350px;
+}
+
+
+
+@media (max-width: 750px) {
+    .container-fluid {
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+
+}
+
+@media (max-width: 400px) {
+    .container-fluid {
+        display: block;
+        padding: 15px;
+    }
+
 }
