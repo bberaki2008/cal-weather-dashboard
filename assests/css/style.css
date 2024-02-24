@@ -93,11 +93,13 @@ h2, h3 {
     color: black;
     flex-basis: 100%;
 }
-#day-5 h2{
-    margin:0;
+#day-5 h2,  #title{
+    margin:6px;
     padding:0;
+    font-size: 30px;
 
 }
+
 
 #item1,
 #item2,
@@ -174,6 +176,7 @@ img {
 .page-section #grandParent {
     text-align: left;
     font-weight: 600;
+
 }
 
 hr {
@@ -191,9 +194,15 @@ h1 {
     font-size: 400%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
     .flex-item:first-child {
             height: 270px;
             min-height: 270px;
+    }
+
+    .page-section #grandParent {
+        flex: 0 0 72%;
+        margin: 0px 0 auto 12px;
+        padding-left: 0;
     }
 }
