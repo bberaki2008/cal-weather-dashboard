@@ -10,6 +10,13 @@ let divGrandParentEl = document.getElementById('grandParent');
   }
 
 
+let weatherIconimg= {
+  "13n":"https://openweathermap.org/img/wn/13n@2x.png", "04n":"https://openweathermap.org/img/wn/04n@2x.png", "01n":"https://openweathermap.org/img/wn/01n@2x.png","03n":"https://openweathermap.org/img/wn/03n@2x.png",
+  "10n":"https://openweathermap.org/img/wn/10n@2x.png","02n":"https://openweathermap.org/img/wn/02n@2x.png", "13d":"https://openweathermap.org/img/wn/13d@2x.png", "04d":"https://openweathermap.org/img/wn/04d@2x.png", 
+  "01d":"https://openweathermap.org/img/wn/01d@2x.png",
+  "03d":"https://openweathermap.org/img/wn/03d@2x.png", 
+  "10d":"https://openweathermap.org/img/wn/10d@2x.png"};
+
 function getApi(event) {
   event.preventDefault();
   let city =document.getElementById('city').value.trim();
@@ -21,7 +28,6 @@ function getApi(event) {
   //replace space with +sign.
   let cityFiltered = city.replace(" ","+");
 
-  // let api_key ="b999cb8b22b053825ee574c293c2deaa"
   // fetch request gets a list of all the weather data for six days
   let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityFiltered}&units=imperial&cnt=48&appid=b999cb8b22b053825ee574c293c2deaa`; //
 
@@ -41,12 +47,7 @@ function getApi(event) {
       let humid = [];
       let weatherIcon=[];
       let date =[];
-      let weatherIconimg= {
-        "13n":"https://openweathermap.org/img/wn/13n@2x.png", "04n":"https://openweathermap.org/img/wn/04n@2x.png", "01n":"https://openweathermap.org/img/wn/01n@2x.png","03n":"https://openweathermap.org/img/wn/03n@2x.png",
-        "10n":"https://openweathermap.org/img/wn/10n@2x.png","02n":"https://openweathermap.org/img/wn/02n@2x.png", "13d":"https://openweathermap.org/img/wn/13d@2x.png", "04d":"https://openweathermap.org/img/wn/04d@2x.png", 
-        "01d":"https://openweathermap.org/img/wn/01d@2x.png",
-        "03d":"https://openweathermap.org/img/wn/03d@2x.png", 
-        "10d":"https://openweathermap.org/img/wn/10d@2x.png"};
+
       //Loop over the data to generate a weather forcast for 5 days, since the weather is collected every
       // three hours so the for loop is incremented by to to change the data to dailly
       city = city.toLowerCase();
@@ -137,12 +138,7 @@ $(".hisCity" ).on( "click", function(event) {
     let humid = [];
     let weatherIcon=[];
     let date =[];
-    let weatherIconimg= {
-      "13n":"https://openweathermap.org/img/wn/13n@2x.png", "04n":"https://openweathermap.org/img/wn/04n@2x.png", "01n":"https://openweathermap.org/img/wn/01n@2x.png","03n":"https://openweathermap.org/img/wn/03n@2x.png",
-      "10n":"https://openweathermap.org/img/wn/10n@2x.png","02n":"https://openweathermap.org/img/wn/02n@2x.png", "13d":"https://openweathermap.org/img/wn/13d@2x.png", "04d":"https://openweathermap.org/img/wn/04d@2x.png", 
-      "01d":"https://openweathermap.org/img/wn/01d@2x.png",
-      "03d":"https://openweathermap.org/img/wn/03d@2x.png", 
-      "10d":"https://openweathermap.org/img/wn/10d@2x.png"};
+
   for(let i=0; i < daysWeatherOutlookArrayLoc.length; i++){
     if(daysWeatherOutlookArrayLoc[i].name ===city){
       cityWeatherOutlook = daysWeatherOutlookArrayLoc[i];
