@@ -77,9 +77,10 @@ function getApi(event) {
       let dateFiltered = date.filter(filterUndefine);
       
 
-      let daysWeatherOutlook ={"name":city,date:[], weatherIcon:[], temp:[], winSpeed:[], humid:[]};
+      let daysWeatherOutlook ={name:city,date:[], weatherIcon:[], temp:[], winSpeed:[], humid:[]};
 
       // filtering out if the city is already in the list
+      const isButtonCreated =daysWeatherOutlookArray.filter( el => el.name === city ).length||false;
       daysWeatherOutlookArray = daysWeatherOutlookArray.filter( el => el.name != city ); 
 
       for(let i = 0; i < 6 ; i++) {
@@ -99,6 +100,8 @@ function getApi(event) {
         daysWeatherOutlook.humid.push(humidFiltered[i]);
       }
 
+     if(!isButtonCreated){histCreator(city)};
+
       daysWeatherOutlookArray.push(daysWeatherOutlook);
       localStorage.setItem("daysWeatherOutlookArray", JSON.stringify(daysWeatherOutlookArray));
 
@@ -110,7 +113,7 @@ function getApi(event) {
 fetchButton.addEventListener('click', getApi);
 
 //creates history searched city with buttons to click
-function histCreator (city){
+function histCreator(city){
   let parentDiv = document.createElement("div");
   let childDiv = document.createElement("div");
   let histButton = document.createElement("button");
@@ -129,24 +132,17 @@ function histCreator (city){
 
 }
 
-//generate weather forecast from local history
-$(".hisCity" ).on( "click", function(event) {
-  const city = event.target.getAttribute('value');
+$(document).on( "click", ".hisCity", function() {
+  const city = $(this).attr('value');
   curr_city.textContent = city;
-  let daysWeatherOutlookArrayLoc = localStorage.getItem("daysWeatherOutlookArray")?JSON.parse(localStorage.getItem("daysWeatherOutlookArray")):[];
-  let cityWeatherOutlook;
-    let windSpeed =[];
-    let temperature =[];
-    let humid = [];
-    let weatherIcon=[];
-    let date =[];
+  let daysWeatherOutlookArrayLoc = localStorage.getItem("daysWeatherOutlookArray")?JSON.parse(localStorage.getItem("daysWeatherOutlookArray")):[]; 
 
+  let cityWeatherOutlook;
   for(let i=0; i < daysWeatherOutlookArrayLoc.length; i++){
     if(daysWeatherOutlookArrayLoc[i].name ===city){
       cityWeatherOutlook = daysWeatherOutlookArrayLoc[i];
     }
   }
-
 
   for(let i = 0; i < 6 ; i++) {
     document.getElementById(`dateDay${i}`).textContent =  cityWeatherOutlook.date[i];
