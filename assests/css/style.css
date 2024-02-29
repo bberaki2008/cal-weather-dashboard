@@ -35,6 +35,7 @@ h2, h3 {
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: center;
+
 }
 
 /* 1st child of the of the page-section class */
